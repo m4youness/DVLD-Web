@@ -1,0 +1,110 @@
+﻿@page "/updateUser"
+@using Front_End.Components.Pages.Misc
+@using Microsoft.AspNetCore.Components.Authorization
+@using BuisnessUsers
+@using System.Security.Cryptography
+@using System.Text
+@using Microsoft.AspNetCore.WebUtilities
+@rendermode InteractiveServer
+@inject IJSRuntime js
+@inject NavigationManager nav
+
+
+<CascadingAuthenticationState>
+	<AuthorizeView>
+		<Authorized>
+        <div class="h-screen overflow-x-hidden bg-black">
+            <NavBar />
+            <div class="mt-5 flex h-3/4 flex-col items-center justify-center gap-4 text-white">
+                <h1 class="text-center text-3xl font-bold">Update User</h1>
+              
+                        <form class="flex flex-col gap-3" @onsubmit="updateUser">
+
+                    
+                        <input placeholder="Username" @bind="User.UserName" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required />
+                        <input placeholder="Password" @bind="Password" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" type="Password" required/>
+                       
+
+                        <div class="flex justify-center gap-2">
+
+                        <input type="checkbox" id="myCheckbox" name="myCheckbox" @onclick="Check" checked>
+                        <label for="myCheckbox" >Is Active</label>
+                        </div>
+
+                   
+
+                   
+                    <div class="flex justify-center gap-3 transition delay-150 duration-300 ease-in-out">
+                        <button type="submit" class="rounded-3xl bg-blue-600 p-2 px-4 text-white">Update User</button>
+
+                    </div>
+
+                        </form>
+
+         
+            </div>
+       </div>
+       <div class="h-8 bg-black sm:h-0">
+
+       </div>
+    </Authorized>
+    <NotAuthorized>
+        <NotAuthorizedPage PageName="Update Users"/>
+    </NotAuthorized>
+	</AuthorizeView>
+ </CascadingAuthenticationState>
+
+
+@code
+{
+    clsUsers User;
+    System.Uri uri;
+    public string Password { get; set; }
+
+    public bool isChecked { get; set; } = true;
+
+    public void Check()
+    {
+        isChecked = !isChecked;
+    }
+
+    protected override void OnInitialized()
+    {
+        uri = nav.ToAbsoluteUri(nav.Uri);
+
+        int? UserID = null;
+
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id))
+        {
+            UserID = int.Parse(id);
+            User = clsUsers.FindByUserID(UserID);
+        }
+    }
+
+    public string ComputeHash(string input)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] HashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+            return BitConverter.ToString(HashBytes).Replace("-", "").ToLower();
+        }
+    }
+
+    public async Task updateUser()
+    {
+
+        User.isActive = isChecked;
+        User.Password = ComputeHash(Password);
+
+        if (User.Password == "" || User.UserName == "")
+        {
+            await js.InvokeVoidAsync("alert", "All the Data needs to be filled out!");
+            return;
+        }
+
+        if (User.Save())
+            await js.InvokeVoidAsync("alert", "User Update Successfully!");
+        else
+            await js.InvokeVoidAsync("alert", "An Error occurred while trying to update the User!");
+    }
+}

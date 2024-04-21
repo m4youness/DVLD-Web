@@ -1,0 +1,120 @@
+﻿@page "/addPerson"
+@using Front_End.Components.Pages.Misc
+@using Microsoft.AspNetCore.Components.Authorization
+@rendermode InteractiveServer
+@inject NavigationManager nav
+@inject IJSRuntime js
+@using System.Data
+@using BuisnessCountry
+@using BuisnessLayer
+
+
+<CascadingAuthenticationState>
+	<AuthorizeView>
+        <Authorized>
+        <div class="h-screen overflow-x-hidden bg-black">
+            <NavBar />
+            <div class="mt-24 flex h-2/3 flex-col items-center justify-center text-white sm:mt-5">
+                <h1 class="text-center text-3xl font-bold">Add People</h1>
+                <form @onsubmit="AddPerson" class="mt-6 flex w-full flex-col gap-3">
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <input placeholder="firstname" @bind="New_Person.FirstName"  class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required/>
+                        <input placeholder="secondname" @bind="New_Person.SecondName" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required/>
+                        <input placeholder="thirdname" @bind="New_Person.ThirdName" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" />
+                        <input placeholder="lastname" @bind="New_Person.LastName" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required/>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <input placeholder="national number" @bind="New_Person.NationalNo" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required/>
+                        <input placeholder="Email" @bind="New_Person.Email" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required/>
+                        <input placeholder="Address" @bind="New_Person.Address" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required/>
+                         <input placeholder="Phone" @bind="New_Person.Phone" class="border-2 rounded-3xl border-white bg-black p-1 px-4 text-white" required/>
+                        
+                        
+
+
+                    </div>
+
+                    <div class="flex w-full justify-center">
+                        <select class="border-2 rounded-3xl border-white bg-black p-2 text-white" @bind="New_Person.NationalityCountryID">
+                           
+                                @foreach (DataRowView rowView in dv)
+                                {
+                                        <option value="@rowView["CountryID"]">@rowView["CountryName"]</option>
+                                }
+                        </select>
+                        </div>
+
+                    <div class="flex justify-center gap-5">
+
+                        <div class="flex items-center" @onclick="MaleTrue">
+                            <input checked id="default-radio-2" type="radio" value="" name="default-radio" class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-blue-500 focus:ring-2 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600">
+                            <label for="default-radio-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
+                        </div>
+                        <div class="flex items-center" @onclick="FemaleTrue">
+                            <input id="default-radio-1" type="radio" value="" name="default-radio" class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-blue-500 focus:ring-2 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600">
+                            <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center gap-3 transition delay-150 duration-300 ease-in-out">
+                        <button class="rounded-3xl bg-blue-600 p-2 px-4 text-white" type="submit">Add User</button>
+
+                    </div>
+
+
+                </form>
+            </div>
+       </div>
+       <div class="h-8 bg-black sm:h-0">
+
+       </div>
+    </Authorized>
+		<NotAuthorized>
+			<NotAuthorizedPage PageName="Add People"/>
+		</NotAuthorized>
+	</AuthorizeView>
+</CascadingAuthenticationState>
+
+@code {
+    DataView dv = clsCountry.GetAllCountries();
+
+    clsPeople New_Person = new clsPeople();
+    public bool Male { get; set; } = true;
+    public bool Female { get; set; } = false;
+
+    public async Task AddPerson()
+    {
+        New_Person.Gendor = Male == true ? "Male" : "Female";
+        if (clsPeople.IsNationalIdExist(New_Person.NationalNo))
+        {
+            await js.InvokeVoidAsync("alert", "You must not choose an already Existing National Number!");
+            return;
+        }
+
+        if (New_Person.FirstName == "" || New_Person.SecondName == "" || New_Person.LastName == "" || New_Person.NationalityCountryID == -1 || New_Person.Address == "" || New_Person.NationalNo == "" || New_Person.Email == "" || New_Person.Phone == "" || New_Person.Gendor == "")
+        {
+            await js.InvokeVoidAsync("alert", "Must Fill Out all Inputs!");
+            return;
+        }
+
+        if (New_Person.Save())
+            await js.InvokeVoidAsync("alert", "New Person Was Successfully Added!");
+        else
+            await js.InvokeVoidAsync("alert", "There Was an Error Adding a New Person!");
+    }
+
+    public void MaleTrue()
+    {
+        Male = true;
+        Female = false;
+    }
+
+    public void FemaleTrue()
+    {
+        Male = false;
+        Female = true;
+    }
+
+
+}

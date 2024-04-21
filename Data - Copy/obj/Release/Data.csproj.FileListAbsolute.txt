@@ -1,0 +1,6 @@
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Data\bin\Release\Data.dll
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Data\bin\Release\Data.pdb
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Data\obj\Release\Data.csproj.AssemblyReference.cache
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Data\obj\Release\Data.csproj.CoreCompileInputs.cache
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Data\obj\Release\Data.dll
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Data\obj\Release\Data.pdb

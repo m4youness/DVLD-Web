@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Front_End.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Front_End.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Front_End.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Front_End.props",
+      "PackagePath": "build\\Front_End.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Front_End.props",
+      "PackagePath": "buildMultiTargeting\\Front_End.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Front_End.props",
+      "PackagePath": "buildTransitive\\Front_End.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
