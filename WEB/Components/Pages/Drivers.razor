@@ -1,0 +1,67 @@
+﻿@page "/drivers"
+@using Front_End.Components.Pages.Misc
+@using Microsoft.AspNetCore.Components.Authorization
+@rendermode InteractiveServer
+@using BuisnessDrivers
+@using System.Data
+
+<CascadingAuthenticationState>
+	<AuthorizeView>
+		<Authorized>
+            <div class="flex h-screen flex-col gap-2 overflow-x-hidden bg-black">
+                <NavBar />
+                <div class="mt-3 flex justify-center">
+                    <div class="relative mb-5 overflow-x-auto shadow-md sm:rounded-lg">
+                    <h1 class="m-5 text-center text-3xl font-bold text-white">Drivers Table</h1>
+                        
+                        <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+                            <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-zinc-800 dark:text-gray-400">
+                                <tr>
+                                    @foreach (DataColumn col in dv.Table.Columns)
+                                    {
+                                        if (col.ColumnName.ToLower() == "numberofactivelicenses") continue;
+                                        
+                                            <th scope="col" class="px-6 py-3">
+                                            @col.ColumnName
+                                            </th>
+                                    }
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRowView rowView in dv)
+                                {
+                                        <tr class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-stone-950 even:dark:bg-neutral-900">
+
+                                        @foreach (DataColumn col in dv.Table.Columns)
+                                        {
+                                            if (col.ColumnName.ToLower() == "numberofactivelicenses") continue;
+                                                <td class="px-6 py-4">
+                                                  
+                                                    @rowView.Row[col]
+                                                    
+                                                </td>
+
+                                        }
+                                        </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+		</Authorized>
+		<NotAuthorized>
+			<NotAuthorizedPage PageName="Drivers" />
+		</NotAuthorized>
+	</AuthorizeView>
+
+</CascadingAuthenticationState>
+
+@code
+{
+    DataView dv = clsDrivers.GetAllDrivers();
+}

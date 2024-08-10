@@ -1,0 +1,141 @@
+﻿@page "/people"
+@using Front_End.Components.Pages.Misc
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Data
+@using BuisnessLayer;
+@inject IJSRuntime js
+@inject NavigationManager nav_manager
+@rendermode InteractiveServer
+@using BuisnessUsers
+
+
+<CascadingAuthenticationState>
+	<AuthorizeView>
+		<Authorized>
+            <div class="flex h-screen flex-col gap-2 overflow-x-hidden bg-black">
+				<NavBar />
+				<div class="mt-3 flex justify-center">
+                    <div class="relative mb-5 overflow-x-auto shadow-md sm:rounded-lg">
+                    <h1 class="m-5 text-center text-3xl font-bold text-white">People Table</h1>
+                        <div class="m-2 flex justify-between text-white">
+                            <button class="rounded-3xl bg-sky-600 p-2 px-3 text-xs text-white" @onclick="AddPerson">Add</button>
+                            <form @onsubmit="DeletePerson">
+                                  <div class="flex gap-3">
+                                <button class="rounded-3xl bg-red-600 p-2 px-3 text-xs text-white" type="submit">Delete</button>
+                                <input class="border-2 rounded-3xl border-white bg-black p-1 px-3 text-white" @bind="PersonIDToBeDeleted" placeholder="Person ID" required/>   
+
+                            </div>
+                            </form>
+                          
+                        </div>
+                        <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+                            <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-zinc-800 dark:text-gray-400">
+                                <tr>
+                                    @foreach(DataColumn col in dv.Table.Columns)
+                                    {
+                                        if (col.ColumnName.ToLower() == "dateofbirth" || col.ColumnName.ToLower() == "phone") continue;
+                                        if (col.ColumnName.ToLower() == "gendor")
+                                        {
+                                                <th scope="col" class="px-6 py-3">
+                                                    GENDER  
+                                                </th>
+                                            continue;
+                                        }
+                                        <th scope="col" class="px-6 py-3">
+                                            @col.ColumnName
+                                        </th>
+                                    }
+                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(DataRowView rowView in dv)
+                                {
+                                    <tr class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-stone-950 even:dark:bg-neutral-900">
+
+                                    @foreach (DataColumn col in dv.Table.Columns)
+                                    {
+                                        if (col.ColumnName.ToLower() == "dateofbirth" || col.ColumnName.ToLower() == "phone") continue;   
+                                        <td class="px-6 py-4">
+                                            <buttton class="hover:underline" @onclick="@(e => ViewPerson((int)rowView.Row["PersonID"]))">
+                                                @rowView.Row[col]
+                                            </buttton>
+                                        </td>
+                                         
+                                    }
+                                    </tr>
+                                }
+            
+               
+                            </tbody>
+                        </table>
+                        </div>
+				    </div>
+
+	            </div>
+            
+		</Authorized>
+		<NotAuthorized>
+			<NotAuthorizedPage PageName="People" />
+		</NotAuthorized>
+	</AuthorizeView>
+
+</CascadingAuthenticationState>
+
+
+@code
+{
+    DataView dv = clsPeople.GetAllInfo();
+    public int? PersonIDToBeDeleted { get; set; } = null;
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthenticationStateTask { get; set; }
+    private AuthenticationState auth { get; set; }
+    clsPeople CurrentPerson;
+
+    protected override async void OnInitialized()
+    {
+        auth = await AuthenticationStateTask;
+        var CurrentUser = clsUsers.Find(auth.User.Identity.Name);
+        CurrentPerson = clsPeople.Find(CurrentUser.PersonID);
+    }
+
+    public async Task DeletePerson()
+    {
+        var Person = clsPeople.Find(PersonIDToBeDeleted);
+        if (Person == null)
+        {
+            await js.InvokeVoidAsync("alert", "This Person Doesn't Exist!");
+            return;
+        }
+        if (Person.ID == CurrentPerson.ID)
+        {
+            await js.InvokeVoidAsync("alert", "Can't Delete the person you are signed in with!");
+            return;            
+        }
+
+        if (!PersonIDToBeDeleted.HasValue)
+        {
+            await js.InvokeVoidAsync("alert", "You must enter a Person ID!");
+            return;
+        }
+        
+        if (clsPeople.DeleteByID(PersonIDToBeDeleted))
+            await js.InvokeVoidAsync("alert", "Person Was Deleted Successfuly!");
+        else
+            await js.InvokeVoidAsync("alert", "This Person Cannot be deleted because it has data tied to it!");
+            
+    }
+
+    public void AddPerson()
+    {
+        nav_manager.NavigateTo("/addPerson");
+    }
+
+    public void ViewPerson(int personID)
+    {
+       nav_manager.NavigateTo($"/updatePerson?id={personID}");
+
+    }
+   
+
+}

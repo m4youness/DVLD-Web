@@ -1,0 +1,9 @@
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\bin\Release\Buisness.dll
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\bin\Release\Buisness.pdb
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\bin\Release\Data.dll
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\bin\Release\Data.pdb
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\obj\Release\Buisness.csproj.AssemblyReference.cache
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\obj\Release\Buisness.csproj.CoreCompileInputs.cache
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\obj\Release\Buisness.csproj.CopyComplete
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\obj\Release\Buisness.dll
+C:\Users\Mohamad Youness\OneDrive\Desktop\Coding Projects\Buisness\obj\Release\Buisness.pdb

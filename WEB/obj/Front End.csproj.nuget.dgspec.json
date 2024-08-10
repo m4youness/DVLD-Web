@@ -1,0 +1,152 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\Front End.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Buisness\\Buisness.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Buisness\\Buisness.csproj",
+        "projectName": "Buisness",
+        "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Buisness\\Buisness.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Data\\Data.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\Front End.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\Front End.csproj",
+        "projectName": "Front_End",
+        "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\Front End.csproj",
+        "packagesPath": "C:\\Users\\Mohamad Youness\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Coding Projects\\Front End\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Mohamad Youness\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Buisness\\Buisness.csproj": {
+                "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Buisness\\Buisness.csproj"
+              },
+              "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Buisness\\Buisness.csproj": {
+                "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Buisness\\Buisness.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Data\\Data.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Data\\Data.csproj",
+        "projectName": "Data",
+        "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\Data\\Data.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Buisness\\Buisness.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Buisness\\Buisness.csproj",
+        "projectName": "Buisness",
+        "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Buisness\\Buisness.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Data\\Data.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Data\\Data.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Data\\Data.csproj",
+        "projectName": "Data",
+        "projectPath": "C:\\Users\\Mohamad Youness\\OneDrive\\Desktop\\DVLD Web Project - Clone\\Data\\Data.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    }
+  }
+}
